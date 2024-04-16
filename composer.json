@@ -1,0 +1,29 @@
+{
+    "name": "antonio/saints-mvc",
+    "description": "Sistema no formato MVC pra aplicações básicas em PHP",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "antoniosaints",
+            "email": "costaantonio883@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "robmorgan/phinx": "^0.16.0"
+    }, 
+    "scripts": {
+        "db:init": "php .\\vendor\\bin\\phinx init --format json",
+        "migrate:up": "php .\\vendor\\bin\\phinx migrate",
+        "migrate:down": "php .\\vendor\\bin\\phinx rollback",
+        "migrate:status": "php .\\vendor\\bin\\phinx status",
+        "migration": "php .\\vendor\\bin\\phinx create",
+        "seed:up": "php .\\vendor\\bin\\phinx seed:run",
+        "seed": "php .\\vendor\\bin\\phinx seed:create"
+    }
+}
