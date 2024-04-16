@@ -21,7 +21,7 @@ class UsuariosController extends BaseController
     public function Create(Request $request, Response $response)
     {
         try {
-            $Post = $request::getJson();
+            $Post = $request::getPost();
             $dataValidada = self::validateSchema(UsuariosSchema::createUser(), $Post);
             $usuarioSave = $this->UsuarioModel->save($dataValidada);
             $response::json([ // Retorna os dados no formato JSON

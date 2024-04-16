@@ -9,7 +9,7 @@ class UsuariosSchema
         return [
             "id"       => "integer",
             "nome"     => "required|string",
-            "email"    => "required|cpf",
+            "email"    => "required|email",
             "senha"    => "required|password",
         ];
     }
