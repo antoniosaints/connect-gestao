@@ -6,28 +6,27 @@ use App\Controllers\BaseController;
 use App\Http\ErrorHandler;
 use App\Http\Request;
 use App\Http\Response;
-use App\Models\Censo\UsuariosCensoModel;
 use App\Models\UsuarioModel;
 use App\Schemas\UsuariosSchema;
-use App\Services\JwtService;
 use Exception;
 
 class UsuariosController extends BaseController
 {
 
-    public function __construct(private $UsuarioModel = new UsuarioModel, private $UsuarioModelCenso = new UsuariosCensoModel)
+    public function __construct(private $UsuarioModel = new UsuarioModel)
     {
     }
     public function Create(Request $request, Response $response)
     {
         try {
             $Post = $request::getPost();
-            $dataValidada = self::validateSchema(UsuariosSchema::createUser(), $Post);
-            $usuarioSave = $this->UsuarioModel->save($dataValidada);
-            $response::json([ // Retorna os dados no formato JSON
-                'message' => "Usuário criado com sucesso",
-                'id'      => $usuarioSave
-            ]);
+            if ($Post["id"]) {
+                $dataValidada = self::validateSchema(UsuariosSchema::updateUser(), $Post);
+            }else {
+                $dataValidada = self::validateSchema(UsuariosSchema::createUser(), $Post);
+            }
+            $this->UsuarioModel->save($dataValidada);
+            $this->getJson($request, $response);
         } catch (Exception $e) { // Tratamento de erro
             ErrorHandler::handle($e); // Chama o tratamento de erro
         }
@@ -37,12 +36,8 @@ class UsuariosController extends BaseController
     {
 
         try {
-            $users = $this->UsuarioModelCenso
-                ->select("id", "nome", "bairro", "datanasc")
-                ->where([
-                    "func_mes" => "s",
-                    "status"   => "a"
-                ])
+            $users = $this->UsuarioModel
+                ->select("id", "nome", "email", "senha")
                 ->limit(10)
                 ->find();
             $response::view("usuarios/lista_usuarios", [
@@ -53,14 +48,35 @@ class UsuariosController extends BaseController
         }
     }
 
+    public function detalheUser(Request $req, Response $res)
+    {
+        try {
+            $iduser = $req::getGet("id");
+            if (!$iduser) {
+                throw new Exception("ID não informado");
+            }
+            $user = $this->UsuarioModel->findById($iduser);
+            $res::view("usuarios/detalhes_modal", [
+                "user" => $user
+            ]);
+        } catch (Exception $e) {
+            ErrorHandler::handle($e);
+        }
+    }
+
     public function editarUser(Request $req, Response $res)
     {
         try {
-            $iduser = $req::getGet("id") || throw new Exception("ID não informado", 1000);
+            $iduser = $req::getGet("id");
 
-            $user = $this->UsuarioModelCenso->findById($iduser);
+            if ($iduser) {
+                $user = $this->UsuarioModel->findById($iduser);
+            }else {
+                $user = [];
+            }
+
             $res::view("usuarios/form_usuarios", [
-                "user" => $user
+                "user" => $user,
             ]);
         } catch (Exception $e) {
             ErrorHandler::handle($e);
@@ -93,11 +109,8 @@ class UsuariosController extends BaseController
             if (!$iduser) {
                 throw new Exception("ID não informado");
             }
-            $userUpdated = $this->UsuarioModel->delete($iduser);
-            $res::json([
-                'message' => $userUpdated ? "Usuário excluido com sucesso" : "Nada foi excluido",
-                'data'    => $userUpdated
-            ]);
+            $this->UsuarioModel->delete($iduser);
+            $this->getJson($req, $res);
         } catch (Exception $e) {
             ErrorHandler::handle($e);
         }

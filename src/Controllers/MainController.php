@@ -7,6 +7,7 @@ class MainController extends BaseController
 {
     public function index($_, Response $res)
     {
+       
         $res::view("template/main");
     }
 }

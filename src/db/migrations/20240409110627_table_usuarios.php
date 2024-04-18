@@ -6,7 +6,7 @@ use Phinx\Migration\AbstractMigration;
 
 final class TableUsuarios extends AbstractMigration
 {
-    public function change(): void
+    public function up(): void
     {
         $table = $this->table('usuarios');
         $table
@@ -21,5 +21,10 @@ final class TableUsuarios extends AbstractMigration
                 'update' => 'CURRENT_TIMESTAMP',
             ])
             ->create();
+    }
+
+    public function down(): void
+    {
+        $this->table('usuarios')->drop()->save();
     }
 }

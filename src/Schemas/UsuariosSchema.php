@@ -7,7 +7,6 @@ class UsuariosSchema
     public static function createUser()
     {
         return [
-            "id"       => "integer",
             "nome"     => "required|string",
             "email"    => "required|email",
             "senha"    => "required|password",
@@ -17,6 +16,7 @@ class UsuariosSchema
     public static function updateUser()
     {
         return [
+            "id"       => "required|integer",
             "nome"     => "string",
             "email"    => "email",
             "senha"    => "password",
