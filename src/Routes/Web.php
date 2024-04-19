@@ -3,6 +3,8 @@
 use App\Http\Route;
 //Rota main
 Route::get("/", "MainController::index");
+Route::get("/login", "MainController::login");
+Route::get("/dashboard", "MainController::dashboard");
 // Lojas
 Route::get("/rifas", "Rifas/RifasController::index");
 Route::post("/rifas", "Rifas/RifasController::save");
