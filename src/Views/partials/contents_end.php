@@ -21,7 +21,11 @@
         console.log(e)
 
         if (e.detail.pathInfo.requestPath) {
-            localStorage.setItem("path", e.detail.pathInfo.requestPath)
+            if (e.detail.pathInfo.requestPath === "/api/isMenu") {
+                localStorage.setItem("path", "/api/dashboard")
+            }else {
+                localStorage.setItem("path", e.detail.pathInfo.requestPath)
+            }
         }
     })
 

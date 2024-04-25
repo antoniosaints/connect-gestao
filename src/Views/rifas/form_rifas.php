@@ -6,7 +6,7 @@
                 <svg class="rtl:rotate-180 block w-3 h-3 mx-1 text-gray-400 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
                 </svg>
-                <a href="javascript:void(0)" hx-get="/api/rifas" hx-target="#content_swap_output" class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Rifas</a>
+                <a href="javascript:void(0)" hx-get="/api/rifas" hx-target="#content_main_page" class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Rifas</a>
             </div>
         </li>
         <li aria-current="page">
@@ -19,7 +19,7 @@
         </li>
     </ol>
 </nav>
-<form class="max-w-xl mx-auto py-5 px-5 mx-auto bg-gray-50 rounded-lg dark:bg-gray-800" hx-post="/api/rifas" hx-target="#content_swap_output" hx-swap="outerHTML">
+<form class="max-w-xl mx-auto py-5 px-5 mx-auto bg-gray-50 rounded-lg dark:bg-gray-800" hx-post="/api/rifas" hx-target="#content_main_page" hx-swap="outerHTML">
     <input type="hidden" name="id" value="<?= $rifa['id'] ?? '' ?>">
     <div class="mb-5">
         <label for="rifa" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rifa</label>

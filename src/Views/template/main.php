@@ -1,11 +1,9 @@
 <?php
 include_once __DIR__ . '/../partials/contents_top.php'; ?>
-<div class="w-screen">
+<div class="w-auto">
     <?php include_once __DIR__ . '/../partials/header.php'; ?>
-
-    <!-- Conteúdo -->
     <div class="mt-14 sm:ml-64">
-        <div class="content p-4 slide-it" id="content_main_page" hx-get="" hx-trigger="load">
+        <div class="content p-4 slide-it" id="content_main_page" hx-get="" hx-swap="innerHTML" hx-trigger="load">
         </div>
     </div>
 </div>

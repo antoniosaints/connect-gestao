@@ -7,6 +7,7 @@ use App\Http\Request;
 use App\Http\Response;
 use App\Models\RifasModel;
 use App\Schemas\RifasSchema;
+use AuthService;
 use Exception;
 
 class RifasController extends BaseController

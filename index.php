@@ -10,10 +10,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit(0);
 }
 require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/src/Services/AuthService.php';
 require_once __DIR__ . '/src/Routes/Api.php';
 require_once __DIR__ . '/src/Routes/Web.php';
 
 use App\Core\Core;
 use App\Http\Route;
-
 Core::dispatch(Route::routes());

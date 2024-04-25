@@ -54,5 +54,5 @@
             300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
     }
 </style>
-<body class="bg-gray-500">
+<body class="bg-gray-900" id="body_content_htmx">
     
