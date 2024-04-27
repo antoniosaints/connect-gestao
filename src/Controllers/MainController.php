@@ -47,7 +47,7 @@ class MainController extends BaseController
         $token = JwtService::encode($user, "saintsmvc", 7200);
         AuthService::setSession("token", $token);
         AuthService::setSession("login", $login["email"]);
-        AuthService::setSession("nome", $user[0]->nome);
+        AuthService::setSession("nome", $user[0]['nome']);
         $this->dashboard($req, $res);
     }
 

@@ -14,6 +14,9 @@ require_once __DIR__ . '/src/Services/AuthService.php';
 require_once __DIR__ . '/src/Routes/Api.php';
 require_once __DIR__ . '/src/Routes/Web.php';
 
+define('APP_PATH', __DIR__);
+define('APP_URL', '/api');
+
 use App\Core\Core;
 use App\Http\Route;
 Core::dispatch(Route::routes());

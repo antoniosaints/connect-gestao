@@ -21,6 +21,8 @@ Route::group(function () {
     Route::get("/pages/caixas", "Pages/PagesController::caixas");
     // Caixas
     Route::get("/caixas", "Caixas/CaixasController::ListaCaixas");
+    Route::get("/caixas/portas", "Caixas/CaixasController::GetFormPortas");
+    Route::post("/caixas/tableline", "Caixas/CaixasController::tableline");
     Route::put("/caixas", "Caixas/CaixasController::FormCaixas");
     Route::get("/caixas/efetivar", "Caixas/CaixasController::EfetivarCaixa");
     Route::post("/caixas", "Caixas/CaixasController::Create");

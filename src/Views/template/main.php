@@ -8,7 +8,7 @@ include_once __DIR__ . '/../partials/contents_top.php'; ?>
     </div>
 </div>
 <script>
-    var path = localStorage.getItem('path') || "/api/dashboard";
+    var path = localStorage.getItem('path') || "<?=APP_URL?>/dashboard";
     document.getElementById('content_main_page').setAttribute('hx-get', path);
 </script>
 <?php include_once __DIR__ . '/../partials/contents_end.php';
