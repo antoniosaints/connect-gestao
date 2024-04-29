@@ -1,4 +1,4 @@
-<h3 class="mb-5 text-lg font-medium text-gray-900 dark:text-white">Em expansão</h3>
+<h3 class="mb-5 text-lg font-medium text-gray-900 dark:text-white">Caixas para expandir</h3>
 <ul class="grid w-full gap-6 md:grid-cols-4">
     <?php if (!empty($caixas)) : foreach ($caixas as $caixa) : ?>
             <li hx-get="<?=APP_URL?>/pages/caixas?id=<?= $caixa["id"] ?>" hx-target="#content_main_page">
