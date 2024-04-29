@@ -14,9 +14,7 @@ use Exception;
 class CaixasController extends BaseController
 {
 
-    public function __construct(private $CaixasModel = new CaixasModel)
-    {
-    }
+    public function __construct(private $CaixasModel = new CaixasModel){}
     public function Create(Request $request, Response $response)
     {
         try {
@@ -46,11 +44,15 @@ class CaixasController extends BaseController
 
     public function tableline(Request $req, Response $res)
     {
-        $id = $req::getGet("id");
-        $portas = $req::getPost("portas");
-        $caixa = $this->CaixasModel->where("id", $id)->find()[0];
-        $this->CaixasModel->update($id, ["portas" => $portas]);
-        $res::html('<div hx-get="'.APP_URL.'/caixas/portas?id='.$caixa["id"].'" hx-target="this" hx-swap="outerHTML" hx-trigger="click">'. $portas .'</div>');
+        try {
+            $id = $req::getGet("id");
+            $portas = $req::getPost("portas");
+            $caixa = $this->CaixasModel->where("id", $id)->find()[0];
+            $this->CaixasModel->update($id, ["portas" => $portas]);
+            $res::html('<div hx-get="'.APP_URL.'/caixas/portas?id='.$caixa["id"].'" hx-target="this" hx-swap="outerHTML" hx-trigger="click">'. $portas .'</div>');
+        }catch (Exception $e) {
+            ErrorHandler::handle($e);
+        }
     }
 
     public function ListaCaixas($r, Response $response)

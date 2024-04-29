@@ -9,13 +9,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     // header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding");
     exit(0);
 }
-require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/src/Services/AuthService.php';
-require_once __DIR__ . '/src/Routes/Api.php';
-require_once __DIR__ . '/src/Routes/Web.php';
-
 define('APP_PATH', __DIR__);
 define('APP_URL', '/api');
+
+require_once APP_PATH . '/vendor/autoload.php';
+require_once APP_PATH . '/src/Services/AuthService.php';
+require_once APP_PATH . '/src/Routes/Api.php';
+require_once APP_PATH . '/src/Routes/Web.php';
 
 use App\Core\Core;
 use App\Http\Route;

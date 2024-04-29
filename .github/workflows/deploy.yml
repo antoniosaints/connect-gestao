@@ -1,0 +1,33 @@
+name: FTP Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with:
+          server: '138.97.232.12'
+          username: 'webhook_cas'
+          password: 'cas20182018'
+          server-dir: '/deploy_github'
+          local-dir: './'
+
+      # - name: SSH into server and run composer install
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.FTP_SERVER }}
+      #     username: ${{ secrets.FTP_USERNAME }}
+      #     password: ${{ secrets.FTP_PASSWORD }}
+      #     script: |
+      #       cd /path/to/destination/directory
+      #       composer install --no-dev

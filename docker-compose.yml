@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - app-network
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
