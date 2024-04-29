@@ -19,7 +19,7 @@ jobs:
           server: '138.97.232.12'
           username: 'webhook_cas'
           password: 'cas20182018'
-          server-dir: '/deploy/'
+          server-dir: '/sistema_noc/'
           local-dir: './'
 
       # - name: SSH into server and run composer install
