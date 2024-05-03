@@ -9,10 +9,15 @@ class AuthMiddleware {
         // Verificar se o usuário está autenticado
         if (!isset($_SESSION['token'])) {
             // Usuário não está autenticado, redirecionar para a página de login
-            $response::view('erros/not_autorized', [
-                "title" => "Erro..",
-                "message" => "Usuário não autenticado"
-            ]);
+            if (isset($request::getHeaders()['HX-Request'])) {
+                $response::view('erros/not_autorized', [
+                    "title" => "Erro..",
+                    "message" => "Usuário não autenticado"
+                ]);
+            } else {
+                $response::view("template/main");
+            }
+            
             exit();
         }
     }

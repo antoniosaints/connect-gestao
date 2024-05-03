@@ -4,7 +4,9 @@ class AuthService
 {
     public static function destroySession()
     {
-        session_destroy();
+        if (isset($_SESSION)) {
+            session_unset();
+        }
     }
 
     public static function setSession($key, $value)
