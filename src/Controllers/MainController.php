@@ -17,6 +17,7 @@ class MainController extends BaseController
         protected $CaixasModel = new CaixasModel
     ) {
     }
+    
     public function index($_, Response $res)
     {
         $this->dashboard($_, $res);
