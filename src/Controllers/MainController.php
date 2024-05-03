@@ -19,7 +19,7 @@ class MainController extends BaseController
     }
     public function index($_, Response $res)
     {
-        $res::view("template/main");
+        $this->dashboard($_, $res);
     }
 
     public function login($_, Response $res, $message = null)
