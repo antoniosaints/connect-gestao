@@ -57,6 +57,7 @@ class MainController extends BaseController
         AuthService::setSession("token", $token);
         AuthService::setSession("login", $login["email"]);
         AuthService::setSession("nome", $user[0]['nome']);
+        header("HX-Replace-Url: ".APP_URL."/dashboard");
         $this->dashboard($req, $res);
     }
 
