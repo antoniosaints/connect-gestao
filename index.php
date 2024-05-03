@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit(0);
 }
 define('APP_PATH', __DIR__);
-define('APP_URL', '/api');
+define('APP_URL', '');
 
 require_once APP_PATH . '/vendor/autoload.php';
 require_once APP_PATH . '/src/Services/AuthService.php';
