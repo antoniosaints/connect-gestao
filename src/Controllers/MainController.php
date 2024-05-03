@@ -14,8 +14,9 @@ class MainController extends BaseController
 {
     public function __construct(
         protected $UsuarioModel = new UsuarioModel,
-        protected $CaixasModel = new CaixasModel)
-    {}
+        protected $CaixasModel = new CaixasModel
+    ) {
+    }
     public function index($_, Response $res)
     {
         $res::view("template/main");
@@ -23,14 +24,22 @@ class MainController extends BaseController
 
     public function login($_, Response $res, $message = null)
     {
-        $res::view("template/login", [
-            "error" => $message
-        ]);
+        if (isset($_::getHeaders()['HX-Request'])) {
+            $res::view("template/login", [
+                "error" => $message
+            ]);
+        } else {
+            $res::view("template/main");
+        }
     }
 
     public function isMenu($_, Response $res)
     {
-        $res::view("partials/menu");
+        if (isset($_::getHeaders()['HX-Request'])) {
+            $res::view("partials/menu");
+        } else {
+            $res::view("template/main");
+        }
     }
 
     public function auth(Request $req, Response $res)
@@ -63,10 +72,15 @@ class MainController extends BaseController
         $caixas = $this->CaixasModel->where([
             "status" => "pendente"
         ])
-        ->orderBy("caixa")
-        ->find();
-        $res::view("partials/main", [
-            "caixas" => $caixas
-        ]);
+            ->orderBy("caixa")
+            ->find();
+
+        if (isset($_::getHeaders()['HX-Request'])) {
+            $res::view("partials/main", [
+                "caixas" => $caixas
+            ]);
+        } else {
+            $res::view("template/main");
+        }
     }
 }

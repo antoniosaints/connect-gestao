@@ -78,13 +78,18 @@ class CaixasController extends BaseController
             ->limit($perPage, $offset)
             ->orderBy("status", "desc")
             ->find();
+            
 
-            $response::view("caixas/lista_caixas", [
-                "caixas" => $dataResult,
-                "total" => $total,
-                "page" => $page,
-                "pages" => $pages
-            ]);
+            if (isset($r::getHeaders()['HX-Request'])) {
+                $response::view("caixas/lista_caixas", [
+                    "caixas" => $dataResult,
+                    "total" => $total,
+                    "page" => $page,
+                    "pages" => $pages
+                ]);
+            }else {
+                $response::view("template/main");
+            }
         } catch (Exception $e) {
             ErrorHandler::handle($e);
         }

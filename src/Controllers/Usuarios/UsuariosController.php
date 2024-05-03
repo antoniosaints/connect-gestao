@@ -22,7 +22,7 @@ class UsuariosController extends BaseController
             $Post = $request::getPost();
             if ($Post["id"]) {
                 $dataValidada = self::validateSchema(UsuariosSchema::updateUser(), $Post);
-            }else {
+            } else {
                 $dataValidada = self::validateSchema(UsuariosSchema::createUser(), $Post);
             }
             $this->UsuarioModel->save($dataValidada);
@@ -39,9 +39,14 @@ class UsuariosController extends BaseController
                 ->select("id", "nome", "email", "senha")
                 ->limit(10)
                 ->find();
-            $response::view("usuarios/lista_usuarios", [
-                "users" => $users
-            ]);
+
+            if (isset($_::getHeaders()['HX-Request'])) {
+                $response::view("usuarios/lista_usuarios", [
+                    "users" => $users
+                ]);
+            } else {
+                $response::view("template/main");
+            }
         } catch (Exception $e) {
             ErrorHandler::handle($e);
         }
@@ -70,7 +75,7 @@ class UsuariosController extends BaseController
 
             if ($id) {
                 $user = $this->UsuarioModel->findById($id);
-            }else {
+            } else {
                 $user = [];
             }
 

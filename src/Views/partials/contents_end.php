@@ -17,29 +17,6 @@
         })
     });
 
-    htmx.on("htmx:beforeSwap", function(e) {
-        console.log(e)
-
-        const ignoredPaths = [
-            "<?=APP_URL?>/auth",
-            "<?=APP_URL?>/isMenu",
-            "<?=APP_URL?>/caixas/tableline",
-            "<?=APP_URL?>/caixas/portas"
-        ]
-
-        let requestPath = e.detail.pathInfo.requestPath.split('?')[0];
-
-        if (e.detail.pathInfo.requestPath) {
-            if (e.detail.pathInfo.requestPath === "<?=APP_URL?>/isMenu" || e.detail.pathInfo.requestPath === "<?=APP_URL?>/auth") {
-                localStorage.setItem("path", "<?=APP_URL?>/dashboard")
-            }else if (ignoredPaths.includes(requestPath))  {
-                return;
-            }else {
-                localStorage.setItem("path", e.detail.pathInfo.requestPath)
-            }
-        }
-    })
-
     htmx.on("htmx:confirm", function(e) {
         e.preventDefault()
         if (e.detail.question) {
