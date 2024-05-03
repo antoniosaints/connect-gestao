@@ -14,8 +14,8 @@
     </nav>
     <div class="flex items-baseline gap-3">
         <button type="button" hx-put="<?=APP_URL?>/caixas" hx-push-url="true" hx-target="#content_main_page" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Nova expansão</button>
-        <input type="search" placeholder="Buscar CTO" hx-get="<?=APP_URL?>/caixas" name="busca" hx-target="#content_main_page" name="busca" class="w-1/4 px-2 py-1 border border-gray-300 rounded-md shadow-sm bg-gray-900 focus:border-blue-500 focus:ring-blue-500 text-gray-200 rounded-lg">
-        <div class="text-red-500 cursor-pointer px-3 py-1 rounded bg-gray-700" hx-get="<?=APP_URL?>/caixas" hx-target="#content_main_page"><i class="fa-solid fa-filter-circle-xmark"></i></div>
+        <input type="search" placeholder="Buscar CTO" value="<?=$_GET['busca'] ?? ''?>" hx-get="<?=APP_URL?>/caixas" hx-push-url="true" name="busca" hx-target="#content_main_page" class="w-1/4 px-2 py-1 border border-gray-300 rounded-md shadow-sm bg-gray-900 focus:border-blue-500 focus:ring-blue-500 text-gray-200 rounded-lg">
+        <div class="text-red-500 cursor-pointer px-3 py-1 rounded bg-gray-700" hx-get="<?=APP_URL?>/caixas" hx-push-url="true" hx-target="#content_main_page"><i class="fa-solid fa-filter-circle-xmark"></i></div>
         <nav aria-label="Page navigation example">
             <ul class="inline-flex -space-x-px text-sm">
                 <?php for ($i = 0; $i < $pages; $i++) {
