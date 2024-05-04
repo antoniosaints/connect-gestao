@@ -12,20 +12,20 @@
             </li>
         </ol>
     </nav>
-    <div class="flex items-baseline gap-3">
+    <div class="flex items-baseline gap-3"> 
         <button type="button" hx-put="<?=APP_URL?>/caixas" hx-push-url="true" hx-target="#content_main_page" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Nova expansão</button>
         <input type="search" placeholder="Buscar CTO" value="<?=$_GET['busca'] ?? ''?>" hx-get="<?=APP_URL?>/caixas" hx-push-url="true" name="busca" hx-target="#content_main_page" class="w-1/4 px-2 py-1 border border-gray-300 rounded-md shadow-sm bg-gray-900 focus:border-blue-500 focus:ring-blue-500 text-gray-200 rounded-lg">
         <div class="<?= isset($_GET['busca']) ? 'text-red-500' : 'text-emerald-500' ?> cursor-pointer px-3 py-1 rounded bg-gray-700" hx-get="<?=APP_URL?>/caixas" hx-push-url="true" hx-target="#content_main_page"><?= isset($_GET['busca']) ? '<i class="fa-solid fa-filter-circle-xmark"></i>' : '<i class="fa-solid fa-filter"></i>' ?></div>
         <nav aria-label="Page navigation example">
             <ul class="inline-flex -space-x-px text-sm">
-                <?php for ($i = 0; $i < $pages; $i++) {
-                    if ($i + 1 == $page) { ?>
+                <?php for ($i = 1; $i <= $pages; $i++) {
+                    if ($i == $page) { ?>
                         <li>
-                            <a href="<?=APP_URL?>/caixas?page=<?= $i + 1 ?>" aria-current="page" class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"><?= $i + 1 ?></a>
+                            <a href="<?=baseurl("/caixas?page=$i")?>" aria-current="page" class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"><?= $i ?></a>
                         </li>
                     <?php } else { ?>
                         <li>
-                            <a href="<?=APP_URL?>/caixas?page=<?= $i + 1 ?>" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"><?= $i + 1 ?></a>
+                            <a href="<?=baseurl("/caixas?page=$i")?>" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"><?= $i ?></a>
                         </li>
                 <?php } } ?>
             </ul>

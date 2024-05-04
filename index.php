@@ -11,11 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 define('APP_PATH', __DIR__);
 define('APP_URL', '');
+define('BASE_URL', $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . APP_URL);
 
 require_once APP_PATH . '/vendor/autoload.php';
 require_once APP_PATH . '/src/Services/AuthService.php';
 require_once APP_PATH . '/src/Routes/Api.php';
 require_once APP_PATH . '/src/Routes/Web.php';
+require_once APP_PATH . '/src/Core/Helper/helper_core.php';
 
 use App\Core\Core;
 use App\Http\Route;
